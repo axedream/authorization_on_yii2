@@ -9,7 +9,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\RoleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$this->title = 'CRM: Роли';
+$this->title = 'ONPN: Роли';
 
 $script = <<<JS
 $(function() {

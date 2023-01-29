@@ -1,5 +1,5 @@
 <?php
-$this->title = 'CRM: Главная страница';
+$this->title = 'ONPN: Главная страница';
 ?>
 
 <div class="container-fluid">

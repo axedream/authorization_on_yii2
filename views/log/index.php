@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Log - логирование всех разделов';
+$this->title = 'ONPN:Log - логирование всех разделов';
 
 
 $script = <<<JS

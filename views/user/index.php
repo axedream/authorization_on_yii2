@@ -16,7 +16,7 @@ use app\models\UserGroup;
 /* @var $searchModel app\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'CRM: Пользователи';
+$this->title = 'ONPN: Пользователи';
 
 $script = <<<JS
     $("#table_greed_view tbody td").click(function(e) {
