@@ -48,7 +48,6 @@ $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/admi
     <!-- Main Footer -->
     <?= $this->render('footer') ?>
 
-    <?= $this->render('view_post') ?>
 </div>
 
 <?php $this->endBody() ?>
