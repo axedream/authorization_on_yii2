@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use app\models\ViewPost;
 
 ?>
 <!-- Navbar -->
@@ -15,13 +14,6 @@ use app\models\ViewPost;
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-
-        <?php if (in_array(Yii::$app->controller->id,array_keys(ViewPost::$cn))) { ?>
-        <!-- Navbar Search -->
-        <li class="nav-item">
-            <?= $this->render('/view_post/index.php',['cn'=>Yii::$app->controller->id]) ?>
-        </li>
-        <?php } ?>
 
         <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">

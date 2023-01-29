@@ -17,8 +17,8 @@ class UserSearch extends User
     public function rules()
     {
         return [
-            [['id','archive','user_type_id','user_group_id','buyer_id'], 'integer'],
-            [['login', 'password', 'username', 'roles','archive_s'], 'safe'],
+            [['id','archive'], 'integer'],
+            [['login', 'password', 'archive_s'], 'safe'],
         ];
     }
 
@@ -61,17 +61,11 @@ class UserSearch extends User
             'id' => $this->id,
         ]);
 
-        if ($this->buyer_id) {
-            $query->andWhere(['buyer_id'=>$this->buyer_id]);
-        }
 
-        $query->andFilterWhere(['user_group_id'=>$this->user_group_id]);
 
         $query->andFilterWhere(['like', 'login', $this->login])
             ->andFilterWhere(['like', 'password', $this->password])
-            ->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'roles', $this->roles])
-            ->andFilterWhere(['user_type_id'=>$this->user_type_id]);
+            ->andFilterWhere(['like', 'roles', $this->roles]);
         if (in_array($this->archive_s,[1,2,3])) {
             if ($this->archive_s == 1) {
                 $query->andWhere(['archive' => 1]);

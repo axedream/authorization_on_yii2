@@ -7,17 +7,6 @@ if (file_exists(__DIR__ . '/../../db.php')) {
     $db = require __DIR__ . '/db.php';
 }
 
-if (file_exists(__DIR__ . '/../../db2.php')) {
-    $db2 = require(__DIR__ . '/../../db2.php');
-} else {
-    $db2 = require __DIR__ . '/db.php';
-}
-
-if (file_exists(__DIR__ . '/../../clickhouse.php')) {
-    $clickhouse = require(__DIR__ . '/../../clickhouse.php');
-} else {
-    $clickhouse = FALSE;
-}
 
 $config = [
     'id' => 'basic-console',
@@ -34,13 +23,6 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        /*
-        'user' => [
-            'class' => 'yii\web\User',
-            'identityClass' => 'app\models\User',
-            //'enableAutoLogin' => true,
-        ],
-        */
         'log' => [
             'targets' => [
                 [
@@ -50,17 +32,8 @@ $config = [
             ],
         ],
         'db' => $db,
-        'db2' => $db2,
-        'clickhouse' => $clickhouse,
     ],
     'params' => $params,
-    /*
-    'controllerMap' => [
-        'fixture' => [ // Fixture generation command line.
-            'class' => 'yii\faker\FixtureController',
-        ],
-    ],
-    */
 ];
 
 if (YII_ENV_DEV) {
