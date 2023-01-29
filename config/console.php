@@ -1,7 +1,23 @@
 <?php
 
 $params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
+if (file_exists(__DIR__ . '/../../db.php')) {
+    $db = require(__DIR__ . '/../../db.php');
+} else {
+    $db = require __DIR__ . '/db.php';
+}
+
+if (file_exists(__DIR__ . '/../../db2.php')) {
+    $db2 = require(__DIR__ . '/../../db2.php');
+} else {
+    $db2 = require __DIR__ . '/db.php';
+}
+
+if (file_exists(__DIR__ . '/../../clickhouse.php')) {
+    $clickhouse = require(__DIR__ . '/../../clickhouse.php');
+} else {
+    $clickhouse = FALSE;
+}
 
 $config = [
     'id' => 'basic-console',
@@ -14,9 +30,17 @@ $config = [
         '@tests' => '@app/tests',
     ],
     'components' => [
+        'user' => null,
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        /*
+        'user' => [
+            'class' => 'yii\web\User',
+            'identityClass' => 'app\models\User',
+            //'enableAutoLogin' => true,
+        ],
+        */
         'log' => [
             'targets' => [
                 [
@@ -26,6 +50,8 @@ $config = [
             ],
         ],
         'db' => $db,
+        'db2' => $db2,
+        'clickhouse' => $clickhouse,
     ],
     'params' => $params,
     /*

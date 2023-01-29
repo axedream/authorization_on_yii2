@@ -1,0 +1,4 @@
+req_account 	form_big_account_list		(get_list_big_accounts_ajax)	CRM: Запросы => Список (выдача в низу)
+req_account	form_big_account_change_array	(get_list_big_accounts_ajax)	CRM: Запросы => Массовая замена статусов при нажатии на кнопку "Изменить", выбор статуса
+req_account	form_add_big_account		(get_form_big_accounts_ajax)	CRM: Запросы => Форма добавления комментариев + выбор статуса (Листинг статусов)
+reqout_account 	form_req_status			(get_req_status_ajax)		CRM: Запросы - аккаунты => Выданные аккаунты (за сегодня) при попытке изменить аккаунт -> предлагаемые статусы

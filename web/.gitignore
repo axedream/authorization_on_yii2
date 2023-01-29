@@ -1,0 +1,9 @@
+/assets/
+/files/
+/files/
+/upload/
+/uploads/
+/test_files/
+/docgen/file/
+!.gitignore
+Nginx_1.21_vhost.conf
