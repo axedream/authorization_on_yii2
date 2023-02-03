@@ -22,7 +22,7 @@ use yii\helpers\Html;
         </li>
 
         <li class="nav-item">
-            <?= Html::a('<i class="fas fa-sign-out-alt"></i>', ['/user/logout'], ['data-method' => 'post', 'class' => 'nav-link']) ?>
+            <?= Html::a('<i class="fas fa-sign-out-alt"></i>', ['/users/logout'], ['data-method' => 'post', 'class' => 'nav-link']) ?>
         </li>
     </ul>
 </nav>

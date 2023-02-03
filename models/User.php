@@ -175,7 +175,6 @@ class User extends Basic implements \yii\web\IdentityInterface
         $_atr_old = $this->oldAttributes;   $atr_old = $_atr_old['archive'];
         $_atr_new = $this->attributes;      $atr_new = $_atr_new['archive'];
 
-
         //соединяем текущий массив в строку для хранения
         if (isset($this->roles_view)) {
             $this->roles= (is_array($this->roles_view)) ? implode(',',$this->roles_view) : '';
@@ -218,6 +217,10 @@ class User extends Basic implements \yii\web\IdentityInterface
     }
 
     public function getAuthKey() { }
+
+    public function setAuthKey() {
+        $this->auth_key = md5(self::getNowDateTime());
+    }
 
     public function validateAuthKey($authKey) { }
 
