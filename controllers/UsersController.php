@@ -1,6 +1,7 @@
 <?php
 
 namespace app\controllers;
+use app\models\User;
 use yii\data\Pagination;
 use Yii;
 use app\models\UserCurrent;
@@ -218,6 +219,61 @@ class UsersController extends BasicController
 
         return $this->out();
     }
+
+    /*
+     * Получаем Login рользователя из формы изменения пароля
+     */
+    public function actionPasswd_get()
+    {
+        $this->init_ajax();
+        $this->error = "yes";
+        $this->msg = "недостаточно прав пользователя!";
+
+        if (Yii::$app->request->isAjax) {
+            $post = Yii::$app->request->post();
+            $id = ($post && $post['id']) ? $post['id'] : FALSE;
+            if ($id && User::find()->where(['id'=>$id])->exists()) {
+                $model_user = User::findOne($id);
+                $this->error = "no";
+                $this->msg = "Логин успешно найден";
+                $this->data['name'] = $model_user->login;
+                $this->data['content'] = $this->renderAjax('change_form');
+            }
+        }
+        return $this->out();
+    }
+
+    /**
+     * Устанавливаем пароль пользователю
+     *
+     * @return array
+     */
+    public function actionPasswd_set()
+    {
+        $this->init_ajax();
+        $this->error = "yes";
+        $this->msg = "недостаточно прав пользователя!";
+
+        if (Yii::$app->request->isAjax) {
+            $post = Yii::$app->request->post();
+            $id = ($post && $post['id']) ? $post['id'] : FALSE;
+            if ($id && User::find()->where(['id'=>$id])->exists()) {
+                $model_user = User::findOne($id);
+                if (trim($post['passwd_change_1'])!='' && trim($post['passwd_change_2'])!='' && $post['passwd_change_1'] == $post['passwd_change_2']) {
+                    $model_user->setPassword($post['passwd_change_1']);
+                    $model_user->save();
+                    $this->error = "no";
+                    $this->msg = "Пароль успешно изменен";
+                } else {
+                    $this->error = "no";
+                    $this->msg = "Ошибка при задании пароля! Выберите пользователя повторно и попробуйте еще раз!";
+                }
+
+            }
+        }
+        return $this->out();
+    }
+
 
     public function actionLogout()
     {

@@ -28,3 +28,11 @@ use yii\bootstrap4\Modal;
 </div>
 <?php Modal::end(); ?>
 <!-- ----------------------------------------ОКНО ПРЕЛОАДИНГА---------------------------------------- -->
+
+<!-- ----------------------------------------ОКНО СМЕНЫ/УСТАНОВКИ ПАРОЛЯ---------------------------------------- -->
+<?php Modal::begin(['id'=>'ChangePasswdModal', 'title' => '<h5 class="modal-title">Изменить/задать пароль: <b><div id="ChangePasswdModalName"></div></b></h5>','footer'=>'<a class="btn btn-primary" id="SavePasswdButton" onclick="user_passwd_set_button()" >Сохранить</a>' ]); ?>
+    <div id="ChangePasswdModalContent">
+    </div>
+<?php Modal::end(); ?>
+<!-- ----------------------------------------ОКНО СМЕНЫ/УСТАНОВКИ ПАРОЛЯ---------------------------------------- -->
+

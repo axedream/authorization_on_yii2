@@ -22,6 +22,17 @@ if ($model->roles) {
     <div class="col-lg-6">
         <?= $form->field($model, 'login')->textInput(['maxlength' => true])->label('Login') ?>
     </div>
+
+    <?php if ($model->isNewRecord) { ?>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'password')->textInput(['maxlength' => true])->label('Пароль') ?>
+        </div>
+    <?php } else { ?>
+        <div class="col-lg-6" style="padding-top: 32px; text-align: right;">
+            <a href="#" class="btn btn-success" onclick="user_passwd_get_button('<?= $model->id ?>');">Установить пароль</a>
+        </div>
+    <?php } ?>
+
     <div class="col-lg-6">
         <?php if($model->archive==1) { ?>
         <div style="padding-top: 30px; text-align: right;">

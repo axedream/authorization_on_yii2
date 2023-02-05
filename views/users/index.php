@@ -178,6 +178,53 @@ function event_get_data() {
     });
 }
 
+
+function user_passwd_get(id) {
+    $("#edit_form_modal").modal("hide");
+    $("#ChangePasswdModal").modal("show");
+    $("#SavePasswdButton").show();
+    $("#ChangePasswdModalName").text('').data('id','');
+    $("#passwd1").val("");
+    $("#passwd2").val(""); 
+    $.ajax({
+        url: this_host + "/users/passwd_get",
+        data: {
+            id: id,
+        },
+        type: 'POST',
+        dataType: 'JSON',
+        cache: false,
+        success: function(msg) {
+            if (msg.error == 'no') {
+                $("#ChangePasswdModalContent").html(msg.data.content);
+                $("#ChangePasswdModalName").html(msg.data.name).data('id',id);
+            }
+        },
+    });
+}
+
+function user_passwd_set() {
+    $.ajax({
+        url: this_host + "/users/passwd_set",
+        data: {
+            id: $("#ChangePasswdModalName").data('id'),
+            passwd_change_1: $("#passwd1").val(),
+            passwd_change_2: $("#passwd2").val(),
+        },
+        type: 'POST',
+        dataType: 'JSON',
+        cache: false,
+        success: function(msg) {
+            $("#ChangePasswdModalContent").html(msg.msg);
+            $("#SavePasswdButton").hide();
+            setTimeout(function run() {
+                $("#ChangePasswdModal").modal("hide");
+            }, 1500);
+        },
+    });
+}
+
+
 $(function() {
     
     save_form = function() { save_row(); };
@@ -187,7 +234,8 @@ $(function() {
     checkbox_set_all = function() { $(".s_check").trigger('click'); };
     user_add_button = function() { get_edit_row(0); };
     user_recovery_button = function(id) { user_recovery(id); };
-    
+    user_passwd_get_button = function(id) { user_passwd_get(id); };
+    user_passwd_set_button = function() { user_passwd_set(); };
     
     get_filter();
     get_list();
@@ -216,6 +264,13 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
         //восстановить пользователя из архива
         var user_recovery_button;
+
+        //показать модалку пароля
+        var user_passwd_get_button;
+
+        //установить/изменить пароль (из модалки
+        var user_passwd_set_button;
+
 
     </script>
 
