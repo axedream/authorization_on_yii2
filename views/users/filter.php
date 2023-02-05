@@ -15,7 +15,7 @@ $post['archive'] = (!isset($post['archive'])) ? 3 : $post['archive'];
     </div>
     <!-- ------------------------ ID -------------------------- -->
     <div class="col-lg-2">
-        <label class="control-label" data-from="id">ID (можно через запятую)</label>
+        <label class="control-label" data-from="id">ID (через запятую)</label>
         <input type="text" class="form-control" name="id" value="<?= isset($post['id']) ? $post['id'] : ''; ?>">
     </div>
     <!-- ------------------------ ID -------------------------- -->
