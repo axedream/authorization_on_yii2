@@ -33,6 +33,7 @@ class User extends Basic implements \yii\web\IdentityInterface
             [['id'], 'integer'],
             [['login','password','archive','archive_s','roles','roles_view','auth_key'], 'safe'],
             [['login'],'unique'],
+            [['password'],'required'],
         ];
     }
 
@@ -178,6 +179,9 @@ class User extends Basic implements \yii\web\IdentityInterface
         //соединяем текущий массив в строку для хранения
         if (isset($this->roles_view)) {
             $this->roles= (is_array($this->roles_view)) ? implode(',',$this->roles_view) : '';
+        }
+        if ($this->isNewRecord) {
+            $this->setPassword($this->password);
         }
 
         return parent::beforeSave($insert);
