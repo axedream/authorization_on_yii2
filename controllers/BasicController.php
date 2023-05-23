@@ -154,7 +154,10 @@ class BasicController extends Controller
     {
         //отключаем токен проверки страниц
         $this->enableCsrfValidation = false;
-        session_start();
+        if(session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
+        // session_start();
 
         return parent::runAction($id, $params); 
     }
