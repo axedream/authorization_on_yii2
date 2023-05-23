@@ -39,7 +39,7 @@ class UsersController extends BasicController
         $page_size = (trim($page_limit)) ? $page_limit : FALSE;
         if ($page_size) {
             //выбранная текущая страница минус один
-            $page = $page_post;
+            $page = is_integer($page_post) ? $page_post : 0;
             $countQuery  = clone $models_pages;
             //общее колличество записей (попавших в выборку)
             $cnt = $countQuery->count();
