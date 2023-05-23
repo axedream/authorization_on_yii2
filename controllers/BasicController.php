@@ -137,7 +137,7 @@ class BasicController extends Controller
      */
     public function init()
     {
-        $controller = Yii::$app->controller->id;
+        $controller = isset(Yii::$app->controller->id) ? Yii::$app->controller->id : FALSE;
         if (!in_array($controller,$this->console_controller)) {
             if (isset(Yii::$app->session)) {
                 $this->session = Yii::$app->session;

@@ -285,7 +285,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
                 </p>
             </div>
 
-                <?php if ($message) { ?>
+                <?php if (isset($message) && $message) { ?>
                 <div class="col-lg-6">
                     <?= Alert::widget(['type' => 'success','body' => '<h3>'.$message.'</h3>']) ?>
                 </div>

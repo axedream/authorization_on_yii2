@@ -22,18 +22,18 @@ class UserCurrent extends User
         if ($model) {
             $model->where(['!=','id',1]);
 
-            $id = ($post['id']) ? $post['id'] : '';
+            $id = (isset($post['id'])) ? $post['id'] : '';
             if ($id!='') {
                 $ids = explode(',', $post['id']);
                 $model->andWhere(['IN','id', $ids]);
             }
 
-            $login = ($post['login']) ? $post['login'] : '';
+            $login = (isset($post['login'])) ? $post['login'] : '';
             if ($login!='') {
                 $model->andWhere('login LIKE "%'.$login.'%"');
             }
 
-            $roles = ($post['roles']) ? $post['roles'] : '';
+            $roles = (isset($post['roles']) )? $post['roles'] : '';
 
             if ($roles!='') {
                 if (is_array($roles)) foreach ($roles as $role) {
@@ -42,7 +42,7 @@ class UserCurrent extends User
 
             }
 
-            $archive = ($post['archive']) ? $post['archive'] : '';
+            $archive = (isset($post['archive'])) ? $post['archive'] : '';
             switch ($archive) {
                 //в работе
                 case 2:

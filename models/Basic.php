@@ -447,7 +447,7 @@ class Basic extends ActiveRecord
      */
     public function init()
     {
-        $controller = Yii::$app->controller->id;
+        $controller = isset(Yii::$app->controller->id) ? Yii::$app->controller->id : FALSE ;
         if (!in_array($controller,$this->console_controller)) {
             try {
                 if (isset(Yii::$app->session)   ) {

@@ -3,7 +3,9 @@ namespace app\controllers;
 
 use app\models\AccountsCookie;
 use app\models\FirstAccounts;
+use app\models\LogActionName;
 use app\models\LogRow;
+use app\models\User;
 use Yii;
 use yii\data\Pagination;
 
@@ -28,9 +30,9 @@ class LogController extends BasicController
         $model = LogRow::load_post($model,$post);
         //пагинация
 
-        $page_limit = ($post['page_limit'] ? $post['page_limit'] : 100);
-        $page_post =  ($post['page_post'] ? $post['page_post'] : 0);
-        $sort_post =  ($post['sort_post'] ? $post['sort_post'] : 0);
+        $page_limit = (isset($post['page_limit']) ? $post['page_limit'] : 100);
+        $page_post =  (isset($post['page_post']) ? $post['page_post'] : 0);
+        $sort_post =  (isset($post['sort_post']) ? $post['sort_post'] : 'id');
 
         $pages = FALSE;
         if ($model) {
@@ -40,7 +42,7 @@ class LogController extends BasicController
         $page_size = (trim($page_limit)) ? $page_limit : 100;
         if ($page_size) {
             //выбранная текущая страница минус один
-            $page = $page_post;
+            $page = is_integer($page_post) ? $page_post : 0;
             $countQuery  = clone $models_pages;
             //общее колличество записей (попавших в выборку)
             $cnt = $countQuery->count();
@@ -89,10 +91,10 @@ class LogController extends BasicController
 
         $post = Yii::$app->request->post();
 
-        $page_limit = ($post['page_limit'] ? $post['page_limit'] : 100);
-        $page_post = ($post['page_post'] ? $post['page_post'] : 0);
+        $page_limit = (isset($post['page_limit']) ? $post['page_limit'] : 100);
+        $page_post = (isset($post['page_post']) ? $post['page_post'] : 0);
 
-        $models = FirstAccounts::find()->all();
+        $models = LogActionName::find()->all();
 
         $data_select = [];
         if ($models) foreach ($models as $m){

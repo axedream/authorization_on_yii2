@@ -50,7 +50,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
 <div class="row">
     <div class="col-lg-12">
-        <?php if($bin_fa_del) { ?>
+        <?php if(isset($bin_fa_del)) { ?>
             <a class="btn btn-success" onclick="del_rows()">Удалить выбранное</a><br>
         <?php } ?>
     </div>
@@ -60,7 +60,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
     <div class="col-lg-6"></div>
     <div class="col-lg-6">
         <div style="text-align: right">
-            <?= ($pages ? 'Всего найдено записей: '.$pages->totalCount : '') ?>
+            <?= (isset($pages) ? 'Всего найдено записей: '.$pages->totalCount : '') ?>
             <?= ((!$pages && count($models)) ? 'Всего найдено записей: '.count($models) : '') ?>
         </div>
     </div>

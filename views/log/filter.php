@@ -9,9 +9,9 @@ use app\models\LogGroup;
 use app\models\User;
 
 
-$action_name = ($post['action_name']) ? $post['action_name'] : '';
-$action_group = ($post['action_group']) ? $post['action_group'] : '';
-$login = ($post['login']) ? $post['login'] : '';
+$action_name = (isset($post['action_name'])) ? $post['action_name'] : '';
+$action_group = (isset($post['action_group'])) ? $post['action_group'] : '';
+$login = (isset($post['login'])) ? $post['login'] : '';
 
 $data_action_name = ($action_group!='') ? ArrayHelper::map(LogActionName::find()->where(['log_group_id'=>$action_group])->all(),'uid','name') : ArrayHelper::map(LogActionName::find()->all(),'uid','name');
 
@@ -31,7 +31,7 @@ $data_login = ArrayHelper::map(User::find()->all(),'id','login');
         <?= DateRangePicker::widget([
             'name'=>'action_date',
             'convertFormat'=>true,
-            'value' => ($post['action_date'] ? $post['action_date'] : ''),
+            'value' => (isset($post['action_date']) ? $post['action_date'] : ''),
             //'useWithAddon'=>true,
             'pluginOptions'=>[
                 'locale'=>[

@@ -27,9 +27,9 @@ class UsersController extends BasicController
 
         //пагинация
 
-        $page_limit = ($post['page_limit'] ? $post['page_limit'] : 25);
-        $page_post =  ($post['page_post'] ? $post['page_post'] : 0);
-        $sort_post =  ($post['sort_post'] ? $post['sort_post'] : 0);
+        $page_limit = (isset($post['page_limit']) ? $post['page_limit'] : 25);
+        $page_post =  (isset($post['page_post']) ? $post['page_post'] : 0);
+        $sort_post =  (isset($post['sort_post']) ? $post['sort_post'] : 'id');
 
         $pages = FALSE;
         if ($model) {
@@ -88,8 +88,8 @@ class UsersController extends BasicController
 
         $post = Yii::$app->request->post();
 
-        $page_limit = ($post['page_limit'] ? $post['page_limit'] : 25);
-        $page_post = ($post['page_post'] ? $post['page_post'] : 0);
+        $page_limit = (isset($post['page_limit']) ? $post['page_limit'] : 25);
+        $page_post = (isset($post['page_post']) ? $post['page_post'] : 0);
 
         $models = UserCurrent::find()->all();
 
